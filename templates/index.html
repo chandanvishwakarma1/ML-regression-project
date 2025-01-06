@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Efficiency Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}"/>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+</head>
+<body>
+    <nav>
+        <h1>Energy Efficiency Predictor</h1>
+    </nav>
+    <hr/>
+    <div class="main">
+        <form id="predict-form" method="POST" action="/predict">
+            <label for="features">Enter Features (comma-separated)</label><br>
+            <input type="text" id="features" name="features" placeholder="Enter 8 comma-separated values."><br>
+            <div class="type">
+                <label  for="type">Select Type:</label><br>
+                <select id="type" name="type">
+                <option value="heating">Heating Load</option>
+                <option value="cooling">Cooling Load</option>
+            </select><br>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        
+        <div id="result">
+            <p>Prediction:</p>
+            {% if prediction %}
+                <h2>Prediction: {{ prediction }}</h2>
+                <h3>Type: {{ type }}</h3>
+            {% else %}
+                <p>Press the <strong>Prediction</strong> button</p>
+            {% endif %}
+        </div>
+        
+    </div>
+    <hr class="bottom"/>
+    <div class="wrapper">
+        <div class="item item1">
+            <h3>Relative Compactness (X1)</h3>
+            <p>Buildings with higher compactness tend to have lower heating and cooling loads due to reduced surface area exposed to external conditions.</p>
+        </div>
+        <div class="item item2">
+            <h3>Relative Compactness (X1)</h3>
+            <p>Compact designs save up to 15% on heating costs compared to less compact designs.</p>
+        </div>
+        <div class="item item3">
+            <h3>Surface Area (X2)</h3>
+            <p>Increasing surface area increases exposure to external temperatures, impacting both heating and cooling efficiency.</p>
+        </div>
+        <div class="item item4">
+            <h3>Surface Area (X2)</h3>
+            <p>Optimal surface area designs reduce energy consumption by balancing insulation and ventilation.</p>
+        </div>
+        <div class="item item5">
+            <h3>Wall Area (X3)</h3>
+            <p>Insulated walls and roofs can reduce heating loads by 20%.</p>
+        </div>
+        <div class="item item6">
+            <h3>Roof Area (X4)</h3>
+            <p>Roof area with reflective coatings reduces cooling load significantly in warmer climates.</p>
+        </div>
+        <div class="item item7">
+            <h3>Overall Height (X5)</h3>
+            <p>Taller buildings experience stack effect, influencing ventilation and energy performance. Proper design can mitigate inefficiencies.</p>
+        </div>
+        <div class="item item8">
+            <h3>Orientation (X6)</h3>
+            <p>South-facing buildings (in the Northern Hemisphere) optimize solar gain during winter and reduce heating requirements.</p>
+        </div>
+        <div class="item item9">
+            <h3>Glazing Area (X7)</h3>
+            <p>Glazed surfaces contribute to heat gain during summer and heat loss during winter.</p>
+        </div>
+        <div class="item item10">
+            <h3>Glazing Area Distribution (X8)</h3>
+            <p>Double glazing reduces heat loss by 30%.
+                Balanced glazing distribution minimizes glare while maximizing daylight usage.</p>
+        </div>
+        <div class="item item11">
+            <h3>Roof Area (X4)</h3>
+            <p>Flat roofs absorb more solar heat than sloped roofs in summer, making reflective materials essential in hot climates.</p>
+        </div>
+        <div class="item item12">
+            <h3>Orientation (X6)</h3>
+            <p>East- and west-facing walls receive the most solar radiation in summer, requiring shading devices to reduce cooling loads.</p>
+        </div>
+    </div>
+</body>
+</html>
